@@ -6,6 +6,17 @@
 <title>Insert title here</title>
 </head>
 <body>Chat
-
+<form th:action = "@{/comments}" th:object="${chat}">
+<textarea th:field="*{comment}"></textarea>
+<input type = "submit" value = "Send">
+</form>
+<table>
+<tr>
+	<th>You comment</th>
+</tr>
+<tr th:each="comment :${comments}">
+<td th:text = "${comment.comment}"></td>
+</tr>
+</table>
 </body>
 </html>

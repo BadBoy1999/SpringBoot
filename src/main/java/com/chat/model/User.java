@@ -1,5 +1,7 @@
 package com.chat.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +30,16 @@ private String username;
 @Column(name ="password")
 private String password;
 
+ @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+ private List<Chat>chat;
+ 
+ public void addComment(Chat com) {
+	 chat.add(com);
+ }
+  public List <Chat> getChat(){
+	  return chat;
+  }
+  
 @ManyToMany(cascade = CascadeType.ALL)
 @JoinTable(name = "role_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 private Set<Role> roles;

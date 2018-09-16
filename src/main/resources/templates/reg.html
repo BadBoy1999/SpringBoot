@@ -8,8 +8,10 @@
 <body>
 	<form action="#" th:action="@{/save}" th:object="${userdto}"
 		method="post">
-		<input type="text" th:field="*{username}" /> <input type="password"
+		<input type="text" th:field="*{username}" /> 
+		<input type="password"
 			th:field="*{password}" /> <input type="submit">
 	</form>
+	<p th:text ="${user}"></p>
 </body>
 </html>
